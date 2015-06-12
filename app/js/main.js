@@ -56,6 +56,17 @@ var max = function(numbers, pos, mayor){
  	return max(numbers, pos+1, mayor);
 };
 
+var min = function(numbers, pos, minor){
+    if(!pos){
+		pos = 0;
+		minor=numbers[0];}
+	if (pos == numbers.length - 1)
+        return minor;
+	if(numbers[pos] < minor)
+		minor = numbers[pos];
+ 	return min(numbers, pos+1, minor);
+};
+
 var pepe = {
     name: 'pepe',
     age: 20,
