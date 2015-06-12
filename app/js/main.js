@@ -45,6 +45,17 @@ var average = function(numbers,pos){
     return ((numbers[pos] + sum(numbers, pos + 1))/numbers.length);
 };
 
+var max = function(numbers, pos, mayor){
+    if(!pos){
+		pos = 0;
+		mayor=numbers[0];}
+	if (pos == numbers.length - 1)
+        return mayor;
+	if(numbers[pos] > mayor)
+		mayor = numbers[pos];
+ 	return max(numbers, pos+1, mayor);
+};
+
 var pepe = {
     name: 'pepe',
     age: 20,
