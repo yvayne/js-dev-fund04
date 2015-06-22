@@ -80,3 +80,101 @@ var countWords = function(){
     var paragraph = window.prompt('Introduce the pragraph');
     return paragraph.split(' ').length;
 };
+
+
+var Calculator = function(){
+
+    var memory = 0;
+
+    this.getMemory = function(){
+        return memory;
+    };
+
+    this.setMemory = function(newValue){
+        memory = newValue;
+        return memory;
+    };
+};
+
+Calculator.prototype.add = function(ope1, ope2){
+
+    if (!ope2)
+        return this.setMemory(this.getMemory() + ope1) ;
+
+    this.setMemory(ope1 + ope2);
+    return this.getMemory();
+};
+//add, subtract, multiply and divide
+Calculator.prototype.subtract = function(ope1, ope2){
+
+    if (!ope2)
+        return this.setMemory(this.getMemory() - ope1) ;
+
+    this.setMemory(ope1 - ope2);
+    return this.getMemory();
+};
+
+Calculator.prototype.multiply = function(ope1, ope2){
+
+    if (!ope2)
+        return this.setMemory(this.getMemory() * ope1) ;
+
+    this.setMemory(ope1 * ope2);
+    return this.getMemory();
+};
+
+Calculator.prototype.divide = function(ope1, ope2){
+
+    if (!ope2)
+        return this.setMemory(this.getMemory() / ope1) ;
+
+    this.setMemory(ope1 / ope2);
+    return this.getMemory();
+};
+
+Calculator.prototype.sum = function(numbers, pos){
+
+    if (!pos)
+        pos = 0;
+
+    if (pos == numbers.length - 1)
+        return (numbers[pos]);
+
+    return numbers[pos] + this.sum(numbers, pos + 1);
+};
+
+Calculator.prototype.average = function(numbers,pos){
+	if (!pos)
+        pos = 0;
+		
+    if (pos == numbers.length - 1)
+        return numbers[pos];
+		
+    return ((numbers[pos] + this.average(numbers, pos + 1))/numbers.length);
+};
+
+Calculator.prototype.max = function(numbers, pos, mayor){
+    if(!pos){
+		pos = 0;
+		mayor=numbers[0];}
+	if (pos == numbers.length - 1)
+        return mayor;
+	if(numbers[pos] > mayor)
+		mayor = numbers[pos];
+ 	return this.max(numbers, pos+1, mayor);
+};
+
+Calculator.prototype.min = function(numbers, pos, minor){
+    if(!pos){
+		pos = 0;
+		minor=numbers[0];}
+	if (pos == numbers.length - 1)
+        return minor;
+	if(numbers[pos] < minor)
+		minor = numbers[pos];
+ 	return this.min(numbers, pos+1, minor);
+};
+Calculator.prototype.reset = function(){
+
+    this.setMemory(0);
+};
